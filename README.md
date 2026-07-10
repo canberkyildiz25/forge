@@ -16,6 +16,17 @@ A premium marketing site for a fictional London performance-training facility �
 
 ---
 
+## 📸 Preview
+
+![Hero](public/screenshots/01-hero.png)
+
+|  |  |
+| --- | --- |
+| ![Inside the forge](public/screenshots/04-film.png) | ![Trainers](public/screenshots/11-trainers.png) |
+| ![Membership tiers](public/screenshots/09-tiers.png) | ![Programs](public/screenshots/03-programs.png) |
+
+---
+
 ## ✨ Highlights
 
 - **Full-bleed video hero** with a staged entrance sequence — each headline line rises behind a clip mask
