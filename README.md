@@ -1,36 +1,75 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# FORGE Athletic
 
-## Getting Started
+> **Not a gym. A proving ground.**
 
-First, run the development server:
+A premium marketing site for a fictional London performance-training facility — dark, cinematic, and motion-driven. Built as a portfolio piece to showcase a modern front-end stack end to end: typed content models, server/client component architecture, scroll-driven animation, and self-hosted typography.
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
+**🔗 Live demo → [forge-athletic.netlify.app](https://forge-athletic.netlify.app)**
+
+![Next.js](https://img.shields.io/badge/Next.js_16-000000?style=for-the-badge&logo=nextdotjs&logoColor=white)
+![React](https://img.shields.io/badge/React_19-20232A?style=for-the-badge&logo=react&logoColor=61DAFB)
+![TypeScript](https://img.shields.io/badge/TypeScript_5-3178C6?style=for-the-badge&logo=typescript&logoColor=white)
+![Tailwind CSS](https://img.shields.io/badge/Tailwind_CSS_4-06B6D4?style=for-the-badge&logo=tailwindcss&logoColor=white)
+![Framer Motion](https://img.shields.io/badge/Framer_Motion_12-0055FF?style=for-the-badge&logo=framer&logoColor=white)
+![GSAP](https://img.shields.io/badge/GSAP_3-88CE02?style=for-the-badge&logo=greensock&logoColor=black)
+![Netlify](https://img.shields.io/badge/Netlify-00C7B7?style=for-the-badge&logo=netlify&logoColor=white)
+
+---
+
+## ✨ Highlights
+
+- **Full-bleed video hero** with a staged entrance sequence — each headline line rises behind a clip mask
+- **Word-level title reveals** — headings are split into animatable word spans at runtime and staggered in with GSAP ScrollTrigger
+- **Image "curtain" wipes & parallax** — media unclips bottom-up as it enters the viewport, then drifts subtly on scroll
+- **Framer Motion instrumentation** — spring-smoothed scroll progress bar and in-view count-up stat counters
+- **Custom cursor, magnetic buttons & spotlight cards** — pointer-aware micro-interactions, gated behind `(hover:hover)` so touch devices never pay for them
+- **Film-grain overlay** and an outline-text marquee for analogue texture
+- **Fully responsive** — fluid `clamp()` spacing, a three-tier grid system, and a full-screen mobile menu
+- **Accessible by default** — `prefers-reduced-motion` support, keyboard focus styles, semantic landmarks
+
+## 🧱 Stack & Architecture
+
+| Layer | Choice | Why |
+| --- | --- | --- |
+| Framework | **Next.js 16** (App Router) | Static prerendering of all four routes, RSC-first architecture |
+| Language | **TypeScript 5** | Typed content model (`lib/data.ts`) drives every page |
+| Styling | **Tailwind CSS 4** + a hand-rolled design-token system | Utilities where they help, bespoke CSS where the design demands it |
+| Motion | **GSAP 3 + ScrollTrigger** & **Framer Motion 12** | GSAP for scroll choreography, Framer for React-native springs |
+| Fonts | **next/font** (Big Shoulders · Hanken Grotesk · Fraunces) | Self-hosted, zero layout shift, no third-party requests |
+| Hosting | **Netlify** (Next.js runtime) | CLI-driven deploys |
+
+```
+app/
+├─ layout.tsx        # fonts, metadata, global chrome
+├─ page.tsx          # home — 11 sections
+├─ programs/         # 6 training programmes
+├─ trainers/         # coaching team
+└─ membership/       # tiers, comparison table, join form
+components/
+├─ Nav / Footer      # global chrome
+├─ GsapFx            # scroll choreography (route-aware, self-cleaning)
+├─ RevealInit        # IO reveals, video power-saver, magnetic & spotlight FX
+├─ ScrollProgress    # Framer Motion scroll spring
+├─ Counter           # Framer Motion in-view count-up
+└─ Cursor / HeroLoader / JoinForm
+lib/
+└─ data.ts           # typed content: programmes, trainers, tiers, gallery
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+## 🚀 Getting Started
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+```bash
+npm install
+npm run dev      # http://localhost:3000
+npm run build    # static production build
+```
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+## 📐 Design Notes
 
-## Learn More
+The visual identity leans on three typefaces doing three different jobs: **Big Shoulders** (compressed industrial display) carries the shouting, **Hanken Grotesk** handles body copy, and **Fraunces italic** supplies the editorial counterpoint — lowercase serif moments inside uppercase headlines. A single ember accent (`#FF4A00`) on warm near-black keeps the palette disciplined.
 
-To learn more about Next.js, take a look at the following resources:
+All photography and footage are royalty-free (Unsplash / Mixkit). FORGE Athletic is a fictional brand created for portfolio purposes.
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+---
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
-
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+Built by **Canberk Yıldız** — [GitHub](https://github.com/canberkyildiz25)
