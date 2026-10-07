@@ -1,86 +1,86 @@
 # FORGE Athletic
 
-> **Not a gym. A proving ground.**
+*Not a gym. A proving ground.*
 
-A premium marketing site for a fictional London performance-training facility — dark, cinematic, and motion-driven. Built as a portfolio piece to showcase a modern front-end stack end to end: typed content models, server/client component architecture, scroll-driven animation, and self-hosted typography.
+The site of a performance-training facility in London: a film of the floor on the front page, six programmes, the coaching team, and membership tiers with a form to join.
 
-**🔗 Live demo → [forge-athletic.netlify.app](https://forge-athletic.netlify.app)**
+**Live:** https://forge-athletic.netlify.app
 
-![Next.js](https://img.shields.io/badge/Next.js_16-000000?style=for-the-badge&logo=nextdotjs&logoColor=white)
-![React](https://img.shields.io/badge/React_19-20232A?style=for-the-badge&logo=react&logoColor=61DAFB)
-![TypeScript](https://img.shields.io/badge/TypeScript_5-3178C6?style=for-the-badge&logo=typescript&logoColor=white)
-![Tailwind CSS](https://img.shields.io/badge/Tailwind_CSS_4-06B6D4?style=for-the-badge&logo=tailwindcss&logoColor=white)
-![Framer Motion](https://img.shields.io/badge/Framer_Motion_12-0055FF?style=for-the-badge&logo=framer&logoColor=white)
-![GSAP](https://img.shields.io/badge/GSAP_3-88CE02?style=for-the-badge&logo=greensock&logoColor=black)
-![Netlify](https://img.shields.io/badge/Netlify-00C7B7?style=for-the-badge&logo=netlify&logoColor=white)
+![The front page](public/screenshots/01-hero.png)
 
----
+FORGE Athletic is not a real business. I made the brand up so that I could build one dark, motion-heavy marketing site properly from end to end: content in typed data, pages rendered on the server, and the motion kept in a few client components that clean up after themselves.
 
-## 📸 Preview
-
-![Hero](public/screenshots/01-hero.png)
-
-|  |  |
+| | |
 | --- | --- |
-| ![Inside the forge](public/screenshots/04-film.png) | ![Trainers](public/screenshots/11-trainers.png) |
-| ![Membership tiers](public/screenshots/09-tiers.png) | ![Programs](public/screenshots/03-programs.png) |
+| ![Inside the forge](public/screenshots/04-film.png) | ![The trainers](public/screenshots/11-trainers.png) |
+| ![Membership tiers](public/screenshots/09-tiers.png) | ![The programmes](public/screenshots/03-programs.png) |
 
----
+## What it does
 
-## ✨ Highlights
+- **A film as the opening.** It fills the first screen, and the headline comes up line by line from behind a mask.
+- **Titles that arrive a word at a time.** Headings are split into words when the page runs, and brought in with GSAP ScrollTrigger as they come into view.
+- **Photographs that unclip.** An image is revealed from the bottom up as it enters the window, then drifts a little as the page scrolls.
+- **A progress bar and counters** driven by Framer Motion: the bar follows the scroll on a spring, and the figures count up when they are first seen.
+- **A custom cursor, magnetic buttons and spotlight cards.** They only exist where there is a pointer that can hover, so a phone never pays for them.
+- **Film grain** over the page and a marquee of outlined type.
+- **Four pages**: the front page with eleven sections, programmes, trainers, and membership with a comparison table and the join form.
+- **Less motion when asked.** With `prefers-reduced-motion` the reveals and the parallax are off. Focus styles and landmarks are in place for keyboards and screen readers.
 
-- **Full-bleed video hero** with a staged entrance sequence — each headline line rises behind a clip mask
-- **Word-level title reveals** — headings are split into animatable word spans at runtime and staggered in with GSAP ScrollTrigger
-- **Image "curtain" wipes & parallax** — media unclips bottom-up as it enters the viewport, then drifts subtly on scroll
-- **Framer Motion instrumentation** — spring-smoothed scroll progress bar and in-view count-up stat counters
-- **Custom cursor, magnetic buttons & spotlight cards** — pointer-aware micro-interactions, gated behind `(hover:hover)` so touch devices never pay for them
-- **Film-grain overlay** and an outline-text marquee for analogue texture
-- **Fully responsive** — fluid `clamp()` spacing, a three-tier grid system, and a full-screen mobile menu
-- **Accessible by default** — `prefers-reduced-motion` support, keyboard focus styles, semantic landmarks
-
-## 🧱 Stack & Architecture
+## Stack
 
 | Layer | Choice | Why |
 | --- | --- | --- |
-| Framework | **Next.js 16** (App Router) | Static prerendering of all four routes, RSC-first architecture |
-| Language | **TypeScript 5** | Typed content model (`lib/data.ts`) drives every page |
-| Styling | **Tailwind CSS 4** + a hand-rolled design-token system | Utilities where they help, bespoke CSS where the design demands it |
-| Motion | **GSAP 3 + ScrollTrigger** & **Framer Motion 12** | GSAP for scroll choreography, Framer for React-native springs |
-| Fonts | **next/font** (Big Shoulders · Hanken Grotesk · Fraunces) | Self-hosted, zero layout shift, no third-party requests |
-| Hosting | **Netlify** (Next.js runtime) | CLI-driven deploys |
+| Framework | Next.js 16, App Router | All four routes are prerendered; components are server components unless they have to run in the browser |
+| Language | TypeScript 5 | One typed content model in `lib/data.ts` drives every page |
+| Styling | Tailwind CSS 4 and my own design tokens | Utilities where they help, written CSS where the design needs it |
+| Motion | GSAP 3 with ScrollTrigger, and Framer Motion 12 | GSAP for what is tied to the scroll, Framer Motion for springs inside React |
+| Type | Big Shoulders, Hanken Grotesk and Fraunces through `next/font` | Served from the site itself, with no layout shift and no request to anybody else |
+| Hosting | Netlify | |
 
-```
-app/
-├─ layout.tsx        # fonts, metadata, global chrome
-├─ page.tsx          # home — 11 sections
-├─ programs/         # 6 training programmes
-├─ trainers/         # coaching team
-└─ membership/       # tiers, comparison table, join form
-components/
-├─ Nav / Footer      # global chrome
-├─ GsapFx            # scroll choreography (route-aware, self-cleaning)
-├─ RevealInit        # IO reveals, video power-saver, magnetic & spotlight FX
-├─ ScrollProgress    # Framer Motion scroll spring
-├─ Counter           # Framer Motion in-view count-up
-└─ Cursor / HeroLoader / JoinForm
-lib/
-└─ data.ts           # typed content: programmes, trainers, tiers, gallery
-```
+## Run it
 
-## 🚀 Getting Started
+Node 20 or newer.
 
 ```bash
 npm install
 npm run dev      # http://localhost:3000
-npm run build    # static production build
+npm run build    # the production build
+npm start        # serve that build
+npm run lint
 ```
 
-## 📐 Design Notes
+There are no environment variables.
 
-The visual identity leans on three typefaces doing three different jobs: **Big Shoulders** (compressed industrial display) carries the shouting, **Hanken Grotesk** handles body copy, and **Fraunces italic** supplies the editorial counterpoint — lowercase serif moments inside uppercase headlines. A single ember accent (`#FF4A00`) on warm near-black keeps the palette disciplined.
+## Layout of the code
 
-All photography and footage are royalty-free (Unsplash / Mixkit). FORGE Athletic is a fictional brand created for portfolio purposes.
+```
+app/
+  layout.tsx          fonts, metadata and what is on every page
+  page.tsx            the front page, eleven sections
+  programs/           the six training programmes
+  trainers/           the coaching team
+  membership/         tiers, the comparison table, the join form
+  globals.css         the tokens and the written CSS
+components/
+  Nav, Footer
+  GsapFx              everything tied to the scroll; it knows which route it is on and cleans up on leaving
+  RevealInit          reveals, the pause that stops a film playing off screen, magnetic buttons, spotlight cards
+  ScrollProgress      the progress bar
+  Counter             a figure that counts up when first seen
+  Cursor, HeroLoader, JoinForm
+lib/
+  data.ts             programmes, trainers, tiers and the gallery, typed
+public/screenshots/   the images in this file
+```
 
----
+## Design notes
 
-Built by **Canberk Yıldız** — [GitHub](https://github.com/canberkyildiz25)
+Three typefaces do three different jobs. Big Shoulders, a compressed industrial face, does the shouting. Hanken Grotesk carries the body copy. Fraunces supplies the counterpoint: lower-case serif moments inside upper-case headlines. One ember orange on a warm near-black is the whole palette.
+
+## Credits
+
+The photographs and the footage are royalty-free, from Unsplash and Mixkit.
+
+## Author
+
+[Canberk Yıldız](https://canberkyildiz.netlify.app)
